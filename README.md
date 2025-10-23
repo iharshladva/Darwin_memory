@@ -108,13 +108,14 @@ The system follows a simple but powerful architecture:
 4. Retrieval requests query the index, and Ranker returns the most relevant results.  
 5. Packer and Retention modules keep the memory optimized over time.
 
-
+---
 
 Freshness Decay:
 
 freshness = exp(-age_days / ttl_days)
 
-Ranking Formula:  
+Ranking Formula:
+
 0.55 * similarity + 0.25 * freshness + 0.20 * confidence
 
 # Setup & Run
