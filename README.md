@@ -2,18 +2,14 @@
 
 # Memory_System
 
-The Darwin Memory System is a modular framework designed to store, retrieve, and manage contextual data efficiently.  
-It supports ingestion from text and image sources, performs deduplication and caching, and uses hybrid (TF-IDF + vector) indexing for scalable memory retrieval.
+The Darwin Memory System is a modular framework designed to store, retrieve, and manage contextual data efficiently.  It supports ingestion from text and image sources, performs deduplication and caching, and uses hybrid (TF-IDF + vector) indexing for scalable memory retrieval.
 
----
+
 
 # Overview
 
-This project implements the internal  Memory Engine that powers Darwin’s contextual understanding.  
-It can process, normalize, and store incoming data, then later retrieve it using keyword and semantic search.  
-The main focus is on modularity, scalability, and clean separation between ingestion, storage, and retrieval layers.
+This project implements the internal  Memory Engine that powers Darwin’s contextual understanding.  It can process, normalize, and store incoming data, then later retrieve it using keyword and semantic search.  The main focus is on modularity, scalability, and clean separation between ingestion, storage, and retrieval layers.
 
----
 
 # Key Features
 
@@ -24,7 +20,6 @@ The main focus is on modularity, scalability, and clean separation between inges
 - SQLite-backed memory store** for persistence  
 - Clean modular structure** easy to extend or debug  
 
----
 
 # Folder Structure
 darwin_memory/
@@ -60,14 +55,17 @@ darwin_memory/
 └── util.py # Utility helpers and configs
 
 
----
+
 
 # Architecture Overview
 
-![Darwin Memory Architecture]
-![System Design](https://github.com/user-attachments/assets/f339ba1c-b094-47ec-8344-c92b50730fc2)
+[Darwin Memory Architecture]
+
+<img width="994" height="1007" alt="System Design" src="https://github.com/user-attachments/assets/1c47f905-3ee8-4d4b-87f3-ec0181dbebdb" />
 
 
+
+ 
 
 The system follows a simple but powerful architecture:
 
@@ -100,7 +98,7 @@ The system follows a simple but powerful architecture:
 9. Ingestors 
    Handle text or image input streams, calling the normalization and indexing layers.
 
----
+
 
 # How It Works
 
@@ -110,7 +108,12 @@ The system follows a simple but powerful architecture:
 4. Retrieval requests query the index, and Ranker returns the most relevant results.  
 5. Packer and Retention modules keep the memory optimized over time.
 
----
+
+
+Freshness Decay:
+
+freshness = exp(-age_days / ttl_days)
+
 Ranking Formula:  
 0.55 * similarity + 0.25 * freshness + 0.20 * confidence
 
